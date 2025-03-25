@@ -52,7 +52,7 @@ df.index.name="Year"
 records = df.to_dict("records")
 df_reset= df.reset_index()
 df_reset["Year"]=df_reset["Year"].astype(str)
-print(df_reset.head())
+# print(df_reset.head())
 
 
 """
@@ -62,28 +62,32 @@ Markdown Text
 #change this
 datasource_text = dcc.Markdown(
     """
-    [Data source:] See Learn Tab for Details
+    Data source: See Learn Tab for Details
     """
 )
 
-asset_allocation_text = dcc.Markdown(
-    """
-> **Asset allocation** is one of the main factors that drive portfolio risk and returns.   Play with the app and see for yourself!
-
-> Change the allocation to cash, bonds and stocks on the sliders and see how your portfolio performs over time in the graph.
-  Try entering different time periods and dollar amounts too.
-"""
-)
 
 learn_text = dcc.Markdown(
     """
+    This is an investigation of Cost of living in Colorado, specifically the capital, Denver. The average cost of living 
+    from 2023 data is approximately 53,000 dollars per person per year. This puts the state about 12% above the average COL in the country. 
+    Use the tools to investigate if you have what it takes to live in such a highly desired location!
     
+    In the "Change of cost of Goods over time"
+    graph, there is a "Consumer Price Index" (price index) specified for the y axis. This value is displaying the percent change in cost of
+    goods over time. Since the index is 100 at year 1982, a value of 150 on the y-axis indicates a 50% increase in price since 1982 This is helpful to see
+    the effect of inflation over time, as is relevant to climbing costs in our current economy.
+    
+    The values on the income slider were determined by the difference between the real median value in 2023 and 2023 minimum wage salary. 
+    The "in between" values are given by (median - min. wage/2) + previous value. This provides evenly spaced income values to look at.
+    The median and min. wage values have not changed dramatically since 2023. 2023 data was used for consistency.
     
     Article Citation
     “What Is the Cost of Living in Colorado?” Unbiased, 
     www.unbiased.com/discover/banking/what-is-the-cost-of-living-in-colorado. Accessed 24 Mar. 2025. 
 
     Data Sources Used
+    
     [Consumer Price Index for All Urban Consumers: Used Cars and Trucks in U.S. City Average from Federal Reserve Bank of St. Louis
     ](https://fred.stlouisfed.org/series/CUSR0000SETA02)
     
@@ -437,9 +441,9 @@ def update_checkbox_graph(selected_series, stored_data):
     ]
     fig = go.Figure(data=traces)
     fig.update_layout(
-        title="Select a Category",
+        title="Change in Cost of Goods over Time",
         xaxis_title="Year",
-        yaxis_title="Index Value"
+        yaxis_title="Index Value (1982-84=100)"
     )
     return fig
 
